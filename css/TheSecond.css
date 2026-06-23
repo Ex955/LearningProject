@@ -1,0 +1,51 @@
+ @import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap');
+ /*繁體中文 "Chiron GoRound TC", sans-serif */
+ @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+ /*日文 "DotGothic16", sans-serif */
+ @import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+ /*日文 "Klee One", cursive */
+
+:root{
+    /* ============================
+       01–09 主色（科技核心）
+       ============================ */
+    --c01-primary-dark:#050B14;     /* 夜空藍 Night Void */
+    --c02-primary:#0A1A2F;          /* 深太空藍 Space Deep Blue */
+    --c03-primary-light:#1F3B5A;    /* 科技藍 Tech Blue */
+
+    /* ============================
+       10–19 輔助色（創意亮色）
+       ============================ */
+    --c10-accent-purple:#6C63FF;        /* 霓光紫 Neon Purple */
+    --c11-accent-purple-light:#A89CFF;  /* 淺霓光紫 Soft Neon */
+    --c12-accent-cyan:#00E5FF;          /* 電光青 Electric Cyan */
+    --c13-accent-cyan-light:#7FF6FF;    /* 淺電光青 Light Electric */
+
+    /* ============================
+       20–29 背景色（作品展示）
+       ============================ */
+    --c20-bg-main:#0D1117;          /* 深夜藍背景 Midnight Blue */
+    --c21-bg-sub:#1C2330;           /* 霧面灰藍 Mist Gray Blue */
+    --c22-bg-panel:#111827;         /* 卡片/區塊背景 Panel Dark */
+
+    /* ============================
+       30–39 文字色（高對比）
+       ============================ */
+    --c30-text-main:#E6EDF3;        /* 主文字：科技白 Tech White */
+    --c31-text-sub:#9BA7B4;         /* 次文字：灰藍 Blue Gray */
+    --c32-text-accent:#7DF9FF;      /* 強調文字：亮青藍 Highlight Cyan */
+
+    /* ============================
+       40–49 線條、邊框、陰影
+       ============================ */
+    --c40-line:#2A3442;             /* 分隔線：霧藍線條 */
+    --c41-border:#3C4A5C;           /* 邊框：科技灰藍 */
+    --c42-shadow:rgba(0, 229, 255, 0.25); /* 電光青陰影 */
+
+    /* ============================
+       50–59 狀態色（成功/警示/錯誤）
+       ============================ */
+    --c50-success:#2ECC71;          /* 成功綠 */
+    --c51-warning:#F1C40F;          /* 警示黃 */
+    --c52-error:#E74C3C;            /* 錯誤紅 */
+}

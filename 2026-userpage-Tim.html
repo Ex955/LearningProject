@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人首頁</title>
+    <link rel="stylesheet" href="css/TheSecond.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/my.css">
+    
+
+    <style>
+        :root {
+            /* ============================
+       01–09 主色（科技核心）
+       ============================ */
+            --c01-primary-dark: #050B14;
+            /* 夜空藍 Night Void */
+            --c02-primary: #0A1A2F;
+            /* 深太空藍 Space Deep Blue */
+            --c03-primary-light: #1F3B5A;
+            /* 科技藍 Tech Blue */
+
+            /* ============================
+       10–19 輔助色（創意亮色）
+       ============================ */
+            --c10-accent-purple: #6C63FF;
+            /* 霓光紫 Neon Purple */
+            --c11-accent-purple-light: #A89CFF;
+            /* 淺霓光紫 Soft Neon */
+            --c12-accent-cyan: #00E5FF;
+            /* 電光青 Electric Cyan */
+            --c13-accent-cyan-light: #7FF6FF;
+            /* 淺電光青 Light Electric */
+
+            /* ============================
+       20–29 背景色（作品展示）
+       ============================ */
+            --c20-bg-main: #0D1117;
+            /* 深夜藍背景 Midnight Blue */
+            --c21-bg-sub: #1C2330;
+            /* 霧面灰藍 Mist Gray Blue */
+            --c22-bg-panel: #111827;
+            /* 卡片/區塊背景 Panel Dark */
+
+            /* ============================
+       30–39 文字色（高對比）
+       ============================ */
+            --c30-text-main: #E6EDF3;
+            /* 主文字：科技白 Tech White */
+            --c31-text-sub: #9BA7B4;
+            /* 次文字：灰藍 Blue Gray */
+            --c32-text-accent: #7DF9FF;
+            /* 強調文字：亮青藍 Highlight Cyan */
+
+            /* ============================
+       40–49 線條、邊框、陰影
+       ============================ */
+            --c40-line: #2A3442;
+            /* 分隔線：霧藍線條 */
+            --c41-border: #3C4A5C;
+            /* 邊框：科技灰藍 */
+            --c42-shadow: rgba(12, 217, 240, 0.486);
+            /* 電光青陰影 */
+
+            /* ============================
+       50–59 狀態色（成功/警示/錯誤）
+       ============================ */
+            --c50-success: #2ECC71;
+            /* 成功綠 */
+            --c51-warning: #F1C40F;
+            /* 警示黃 */
+            --c52-error: #E74C3C;
+            /* 錯誤紅 */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--c03-primary-light);
+
+        }
+
+        .s01 {
+            position: relative;
+            background-color: var(--c01-accent-purple);
+            width: 100%;
+            height: 100vh;
+
+        }
+
+        .s01 .box01 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: var(--c10-accent-purple);
+            top: 0;
+            left: 0;
+        }
+
+        .s01 .box02 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: var(--c10-accent-purple);
+            top: 0;
+            right: 0;
+        }
+
+        .s01 .box03 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: var(--c10-accent-purple);
+            bottom: 0;
+            left: 0;
+        }
+
+        .s01 .box04 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: var(--c10-accent-purple);
+            bottom: 0;
+            right: 0;
+        }
+
+        .s01 .userImg {
+            position: absolute;
+            background-color: var(--c13-accent-cyan-light);
+            background-size: cover;
+            top: 100px;
+            bottom: 100px;
+            right: 100px;
+            left: 100px;
+            background-image: url(img/Skeleton02.jpg);
+            background-position: 50% 15%;
+            /* background-attachment: fixed; */
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px 5px var(--c42-shadow);
+        }
+
+        .userText {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            right: 65%;
+        }
+
+        .s02 {
+            padding: 90px 15%;
+            background-color: var(--c02-primary);
+            text-align: center;
+        }
+
+        .s02 h2 {
+            color: var(--c31-text-sub);
+            font-size: 36;
+
+        }
+
+        .s02 .card {
+            display: inline-block;
+            width: 240px;
+            background-color: var(--c11-accent-purple-light);
+            padding: 20px;
+            margin: 10px;
+            text-align: left;
+            border-radius: 10px;
+
+        }
+
+        .s02 .card h3 {
+            color: var(--c32-text-accent);
+            margin-top: 0;
+        }
+
+        .s02 .card p {
+            line-height: 1.5;
+            color: var(--c30-text-main);
+        }
+
+        @media screen and (max-width: 1024px) {
+
+            .s01 {
+                height: auto;
+                padding: 40px 0;
+            }
+
+            /* 四角方塊縮小或隱藏（你可選） */
+            .s01 .box01,
+            .s01 .box02,
+            .s01 .box03,
+            .s01 .box04 {
+                width: 80px;
+                height: 80px;
+                opacity: 0.4;
+                /* 或 display:none; */
+            }
+
+            /* userImg 改成正常流動排版 */
+            .s01 .userImg {
+                position: relative;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+
+                width: 90%;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                /* 保持正方形比例 */
+                margin: 0 auto;
+
+                border-radius: 15px;
+                box-shadow: 3px 3px 10px var(--c42-shadow);
+                background-position: center;
+            }
+
+            /* userText 改成圖片下方 */
+            .userText {
+                position: relative;
+                top: auto;
+                left: 0;
+                right: 25%;
+
+                width: 70%;
+                margin: 20px auto 0 auto;
+                text-align: center;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <section class="s01">
+        <div class="box01"></div>
+        <div class="box02"></div>
+        <div class="box03"></div>
+        <div class="box04"></div>
+        <div class="userImg"></div>
+        <div class="userText">
+            <h1>Tim's Resume</h1>
+            <hr>
+            <h2>應徵職位:軟體工程師</h2>
+            <p>座右銘:
+                就有配套頭銜時尚幹什麼可能會國際上去國內練習時尚，百姓主角現代化銀行行業可用激動價值想要寶寶來到很多人機會，吸收記憶回事所需涉及自主訂單詳細內容，我是能源多多，短信創建發揮唯一戀愛最新家園靈活供求什麼樣藍色娛樂都能，鎖定這位考核職業正是行政交流一系列平時。
+            </p>
+        </div>
+    </section>
+    <section class="s02">
+        <h2>我的作品</h2>
+
+        <!--我的作品01-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-toggle-off" style="color: rgb(205, 216, 225);"></i>切版練習</h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="20260602-1.html" target="_blank">查看作品</a>
+        </div>
+        <!--我的作品02-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-cart-plus" style="color: rgb(205, 216, 225);"></i>觀光網站-切版</i></h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="http://127.0.0.1:5500/CH6-TheQuest-RollerandCut.html" target="_blank">查看作品</a>
+        </div>
+        <!--我的作品03-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-file" style="color: rgb(205, 216, 225);"></i>人生檔案</i></h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="#" target="_blank">查看作品</a>
+        </div>
+        <!--我的作品04-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-dice-d20" style="color: rgb(205, 216, 225);"></i>TRPG網頁</i></h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="#" target="_blank">查看作品</a>
+        </div>
+        <!--我的作品05-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-robot" style="color: rgb(205, 216, 225);"></i>AI機器人工廠</i></h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="#" target="_blank">查看作品</a>
+        </div>
+        <!--我的作品06-->
+
+        <div class="card">
+            <h3><i class="fa-solid fa-paintbrush" style="color: rgb(205, 216, 225);"></i>藝術接案平台</i></h3>
+            <p>使用HTML·CSS·JavaScript製作</p>
+            <a href="#" target="_blank">查看作品</a>
+        </div>#
+    </section>
+
+
+    </div>
+</body>
+
+</html>

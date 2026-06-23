@@ -1,0 +1,344 @@
+ @import url('https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap');
+ /*繁體中文 "Chiron GoRound TC", sans-serif */
+ @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+ /*日文 "DotGothic16", sans-serif */
+ @import url('https://fonts.googleapis.com/css2?family=Klee+One&display=swap');
+ /*日文 "Klee One", cursive */
+
+ /*變數*/
+ /* Ocean Deep Blue Theme */
+ :root {
+     /* 主色系（品牌核心） */
+     --color-primary: #003A66;
+     /* 深海藍 Deep Ocean Blue */
+     --color-primary-light: #1A5C89;
+     /* 淺深海藍 Light Deep Blue */
+     --color-primary-dark: #002544;
+     /* 暗深海藍 Dark Abyss Blue */
+
+     /* 輔助色系（強調、互補） */
+     --color-accent: #00A8E8;
+     /* 海光藍 Ocean Glow Blue */
+     --color-accent-light: #7FDBFF;
+     /* 淺海光藍 Shallow Glow */
+     --color-accent-dark: #0077A8;
+     /* 深海光藍 Deep Glow */
+
+     /* 背景色系（主要與次要背景） */
+     --bg-main: #F4FAFF;
+     /* 主背景：極淺海霧白 Sea Mist White */
+     --bg-sub: #D9E8F2;
+     /* 次背景：淺海藍霧 Light Sea Fog */
+
+     /* 文字色系（主要、次要、反白） */
+     --text-main: #0A1A2F;
+     /* 主文字：深藍黑 Abyss Ink */
+     --text-sub: #4A5F73;
+     /* 次文字：灰藍 Blue Gray */
+     --text-on-dark: #EAF6FF;
+     /* 深色背景用文字：海霧白 Mist White */
+
+     /* 分隔線、邊框、陰影 */
+     --line-color: #B6C8D6;
+     /* 分隔線：淺灰藍 Soft Blue Gray */
+     --border-color: #8FAEC4;
+     /* 邊框：中灰藍 Medium Blue Gray */
+     --shadow-color: rgba(0, 53, 102, 0.25);
+     /* 深海藍陰影 */
+
+     /* 特殊用途（警示、成功、資訊） */
+     --info-color: #2D9CDB;
+     /* 資訊藍 Info Blue */
+     --success-color: #2F9E44;
+     /* 成功綠 Seaweed Green */
+     --warning-color: #F2C94C;
+     /* 警示黃 Coral Yellow */
+     --error-color: #D64545;
+     /* 錯誤紅 Reef Red */
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+ }
+
+ /*字體粗細*/
+ .fw-200 {
+     font-weight: 200;
+ }
+
+ .fw-300 {
+     font-weight: 300;
+ }
+
+ .fw-400 {
+     font-weight: 400;
+ }
+
+ .fw-500 {
+     font-weight: 500;
+ }
+
+ .fw-600 {
+     font-weight: 600;
+ }
+
+ .fw-700 {
+     font-weight: 700;
+ }
+
+ .fw-800 {
+     font-weight: 800;
+ }
+
+ .fw-900 {
+     font-weight: 900;
+ }
+
+ /*字體顏色*/
+ .btn-text-primary {
+     color: var(--error-color);
+ }
+
+ .btn-text-secondary {
+     color: var(--color-accent-light);
+ }
+
+ .btn-text-third {
+     color: #0f43cf;
+ }
+
+ .table-text {
+     color: var(---color-accent) !important;
+ }
+
+ /* rolling效果滑入 */
+
+ /* 右上至左下 */
+ .roller-br {
+     position: relative;
+     overflow: hidden;
+     /* 防止跑版 */
+ }
+
+ .roller-br .roller_box {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     bottom: 100%;
+     right: -100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     /* 玻璃效果核心 */
+     background: rgba(10, 178, 207, 0.12);
+     backdrop-filter: blur(1px);
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     /* Safari 支援 */
+
+     /* 玻璃邊緣光暈 */
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+         inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+     transition: bottom 1s, right 1s;
+ }
+
+ .roller-br:hover .roller_box {
+     bottom: 0;
+     right: 0;
+     /* transition: left 1s; */
+ }
+
+ /* 由右至左 */
+ .roller-r {
+     position: relative;
+     overflow: hidden;
+     /* 防止跑版 */
+ }
+
+ .roller-r .roller_box {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     right: -100%;
+     top: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     /* 玻璃效果核心 */
+     background: rgba(10, 178, 207, 0.12);
+     backdrop-filter: blur(1px);
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     /* Safari 支援 */
+
+     /* 玻璃邊緣光暈 */
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+         inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+     transition: right 1s;
+ }
+
+ .roller-r:hover .roller_box {
+     right: 0;
+     /* transition: left 1s; */
+ }
+
+ /* 由左至右 */
+ .roller-l {
+     position: relative;
+     overflow: hidden;
+     /* 防止跑版 */
+ }
+
+ .roller-l .roller_box {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     left: -100%;
+     top: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     /* 玻璃效果核心 */
+     background: rgba(10, 178, 207, 0.12);
+     backdrop-filter: blur(1px);
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     /* Safari 支援 */
+
+     /* 玻璃邊緣光暈 */
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+         inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+     transition: left 1s;
+ }
+
+ .roller-l:hover .roller_box {
+     left: 0;
+     /* transition: left 1s; */
+ }
+
+ /* 由上至下 */
+ .roller-t {
+     position: relative;
+     overflow: hidden;
+     /* 防止跑版 */
+ }
+
+ .roller-t .roller_box {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     top: -100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     /* 玻璃效果核心 */
+     background: rgba(10, 178, 207, 0.12);
+     backdrop-filter: blur(1px);
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     /* Safari 支援 */
+
+     /* 玻璃邊緣光暈 */
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+         inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+     transition: top 1s;
+ }
+
+ .roller-t:hover .roller_box {
+     top: 0;
+     /* transition: left 1s; */
+ }
+
+ /* 由下至上 */
+ .roller-b {
+     position: relative;
+     overflow: hidden;
+     /* 防止跑版 */
+ }
+
+ .roller-b .roller_box {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     bottom: -100%;
+     left: 0;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     /* 玻璃效果核心 */
+     background: rgba(10, 178, 207, 0.12);
+     backdrop-filter: blur(1px);
+     border: 1px solid rgba(255, 255, 255, 0.15);
+     /* Safari 支援 */
+
+     /* 玻璃邊緣光暈 */
+     border: 1px solid rgba(255, 255, 255, 0.3);
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15),
+         inset 0 0 20px rgba(255, 255, 255, 0.1);
+
+     transition: bottom 1s;
+ }
+
+ .roller-b:hover .roller_box {
+     bottom: 0;
+     /* transition: left 1s; */
+ }
+
+ /* ====== 多片玻璃覆蓋 ====== */
+ .glass {
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+     background: rgba(255, 255, 255, 0.12);
+     /* backdrop-filter: blur(4px); */
+     border: 1px solid rgba(255, 255, 255, 0.1);
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+     transition: all 1s ease;
+ }
+
+ /* 第一片：從左側滑入 */
+ .glass-1 {
+     left: -100%;
+     top: 0;
+ }
+
+ .roller:hover .glass-1 {
+     left: 0;
+ }
+
+ /* 第二片：從右側滑入（延遲） */
+ .glass-2 {
+     right: -100%;
+     top: 0;
+     transition-delay: 0.2s;
+ }
+
+ .roller:hover .glass-2 {
+     right: 0;
+ }
+
+ /* 第三片：從上方滑入（延遲） */
+ .glass-3 {
+     bottom: -100%;
+     left: 0;
+     transition-delay: 0.4s;
+ }
+
+ .roller:hover .glass-3 {
+     bottom: 0;
+ }
