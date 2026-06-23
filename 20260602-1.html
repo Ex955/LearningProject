@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切版練習</title>
+    <link rel="stylesheet" href="css/my.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <style>
+        body {
+            /* 深海漸層背景：由深海藍 → 深淺交界藍 */
+            background: linear-gradient(180deg, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+            font-family: "Klee One", cursive;
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 120px;
+            margin-bottom: 120px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .imgbox {
+            width: 1024px;
+            height: 200px;
+
+            /* 更亮的海面光感漸層 */
+            background-image:
+                linear-gradient(180deg,
+                    rgba(200, 240, 255, 0.35),
+                    rgba(0, 100, 180, 0.25)),
+                url(img/Fish.jpg);
+
+            background-position: center center;
+            background-size: cover;
+        }
+
+
+        nav {
+            /* 海光藍漸層：亮藍 → 深藍 */
+            background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+            text-align: center;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        nav ul {
+            display: inline-block;
+        }
+
+        nav ul li {
+            float: left;
+            list-style-type: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            display: block;
+
+            /* 按鈕漸層：海光藍亮面 → 深藍 */
+            background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent));
+            color: var(--text-on-dark);
+
+            margin-right: 25px;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 7px;
+
+            /* 海水反光感陰影 */
+            box-shadow: 2px 2px 6px rgba(0, 168, 232, 0.4);
+            transition: border-radius 0.5s, box-shadow 0.5s, transform 0.3s;
+        }
+
+        nav ul li a:hover {
+            box-shadow: 2px 2px 12px rgba(0, 240, 220, 0.8);
+            color: var(--color-accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            /* 淺海背景 */
+            background-color: var(--bg-sub);
+            color: var(--text-main);
+            text-align: center;
+            padding-top: 25px;
+            padding-bottom: 25px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .content h1 {
+            color: var(--color-accent-dark);
+
+            font-size: 45px;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            color: var(--color-primary-light);
+        }
+
+        .content a {
+            display: block;
+            width: 130px;
+            height: 40px;
+
+            /* 按鈕漸層：亮海光藍 → 深海光藍 */
+            background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent-dark));
+            color: var(--text-on-dark);
+
+            text-decoration: none;
+            line-height: 40px;
+            font-weight: bold;
+            margin: 0 auto;
+            border-radius: 7px;
+
+            box-shadow: 2px 2px 6px rgba(0, 168, 232, 0.4);
+            transition: border-radius 0.5s, box-shadow 0.5s, transform 0.3s;
+        }
+
+        .content a:hover {
+            box-shadow: 2px 2px 12px rgba(0, 240, 220, 0.8);
+            color: var(--color-accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            /* 深海藍漸層：深藍 → 更深藍 */
+            background: linear-gradient(180deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+            text-align: center;
+            margin-top: 5px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            color: var(--text-on-dark);
+        }
+
+
+        .footer p {
+            font-size: 15px;
+            font-weight: bolder;
+
+        }
+
+        /*響應式畫面*/
+        @media screen and (max-width: 1200px) and (min-width: 1025px) {
+            .imgbox {
+                background-image: url(img/JellyFish.jpg);
+                background-position: 50% 20%;
+                
+            }
+
+        }
+
+
+        @media screen and (max-width: 1024px)
+        /*只有在小於1024px時才會改變*/
+        {
+            .wrapper {
+                width: 100%;
+            }
+
+            .imgbox {
+                width: 100%;
+            }
+
+            nav ul {
+                display: block;
+                padding-left: 10px;
+                margin: 0;
+            }
+
+            nav ul li {
+                float: none;
+                margin-bottom: 10px;
+            }
+
+            nav ul li a {
+                background: linear-gradient(180deg, var(--color-accent-dark), var(--color-primary-dark));
+                color: var(--color-accent-light)
+            }
+
+            .content {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .content p {
+                font-size: 18px;
+                line-height: 1.3;
+                text-align: left;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div class="banner">
+            <div class="imgbox"></div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="fw-600"><i class="fa-solid fa-house btn-text-third"
+                                style="color: rgb(21, 240, 229);"></i>首頁</a></li>
+                    <li><a href="#" class="fw-600"><i class="fa-regular fa-newspaper btn-text-third"
+                                style="color: rgb(21, 240, 229);"></i>最新消息</a></li>
+                    <li><a href="#" class="fw-600"><i class="fa-solid fa-compass btn-text-third"
+                                style="color: rgb(21, 240, 229);"></i>導覽</a></li>
+                    <li><a href="#" class="fw-600"><i class="fa-solid fa-list btn-text-third"
+                                style="color: rgb(21, 240, 229);"></i>列表</a></li>
+                    <li><a href="#" class="fw-600"><i class="fa-solid fa-link btn-text-third"
+                                style="color: rgb(21, 240, 229);"></i>外部連結</a></li>
+                </ul>
+            </nav>
+
+
+        </div>
+        <div class="content">
+            <h1><i class="fa-solid fa-fish-fins" style="color: rgb(60, 136, 192);"></i>
+                歡迎光臨<i class="fa-solid fa-fish-fins" style="color: rgb(60, 136, 192);"></i></h1>
+
+            <p class="fw-400">
+                本網站致力於建立完整的海洋生物百科，從淺海珊瑚到深海巨型生物，皆以科學研究與最新觀測資料為基礎整理而成。我們希望透過清晰的分類、精準的描述與高品質影像，協助讀者更深入理解海洋生態的多樣性與其背後的環境意義。
+            </p>
+
+            <p class="fw-400">
+                內容涵蓋物種特徵、棲地分布、行為模式與保育現況，並提供延伸閱讀與研究參考，適合學生、教育工作者與海洋愛好者使用。透過系統化的知識整理，我們期望讓更多人看見海洋的豐富生命與其面臨的挑戰。</p>
+
+            <p>若您希望探索更多海洋奧秘，本百科將持續更新最新資訊，帶您從科學視角認識這片蔚藍世界。</p>
+
+            <a href="#">了解更多</a>
+        </div>
+
+        <div class="footer">
+            <p>PowerBy XXX.2026.05</p>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+<!--
+# id
+. class
+進行管理時，根據前面的符號添加，系統會篩選並管理符合符號所標記之條件的項目套用變化
+
+shift + alt + F = 自動排版
+crtl + 左斜線 = 註解
+
+單類別多層同時建立 a>b*x>c*x>d*x>...
+如: nav>ul>li*6>a 
+>>> 
+            <nav>
+                <ul>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                    <li><a href=""></a></li>
+                </ul>
+            </nav>
+alt + 左鍵 = 逐一生成多個輸入標
+
+要件管理
+margin = 外部(多個要件之間)距離
+padding = 內部(單個要件自體內)距離
+border-radius = 邊緣圓角率
+box-shadow = 要件陰影
+transition: = 狀態、特效轉變(以s為時間單位)
+font-family:""; =套用字形 
+<link rel ="name" href="css檔案位置"> = 快入調用公用元素
+-->

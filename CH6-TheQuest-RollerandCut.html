@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH6 TheQuest Roller、欄與列</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my.css">
+    <style>
+        .header {
+            width: 100%;
+            height: 300px;
+            /* ⭐ 固定高度，避免破版 */
+            background-image: url(img/SeaShore2.jpg);
+            display: flex;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        .section01 {
+            width: 180px;
+            height: 180px;
+            color: rgb(211, 238, 90);
+            font-size: 48px;
+            margin-top: 10px;
+
+            display: flex;
+            /* 啟用 Flex */
+            align-items: center;
+            /* 垂直置中 */
+            justify-content: center;
+            /* 水平置中 */
+            text-align: center;
+            /* 文字置中（保險） */
+        }
+
+        @media screen and (min-width:768px) {
+            .section01 {
+                height: 180px;
+                line-height: 1808x;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .section01 {
+                height: 180px;
+                border-radius: 50%;
+            }
+        }
+
+        @media screen and (min-width:1200px) {}
+
+        .col-sm-6.col-md-3 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .section02 {
+            padding: 10px;
+            margin-top: 15px;
+            box-shadow: 2px 2px 2px 2px #1066d6;
+            border-radius: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+</body>
+<div class="container">
+    <!-- header -->
+    <div class="row">
+        <div class="col-12 d-none d-sm-block">
+            <div class="header bg-info"></div>
+        </div>
+    </div>
+    <!-- section01 -->
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="section01 bg-primary fw-900">選單1</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="section01 bg-primary fw-900">選單2</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="section01 bg-primary fw-900">選單3</div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+            <div class="section01 bg-primary fw-900">選單4</div>
+        </div>
+    </div>
+    <div id="RestaurantRow" class="row">
+        
+    </div>
+    <!-- <div class="col-md-6 col-lg-4">
+        <div class="section02 roller-t text-center">
+            <div class="roller_box">
+                <button class="btn btn-warning">查看</button>
+            </div>
+            <img src="img/SeaShore1.jpg" class="img-fluid">
+            <div class="h2 fw-900">旅遊景點01</div>
+            <p class="fw-900">這裡放介紹文字...</p>
+        </div>
+
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="section02 roller-l text-center">
+            <div class="roller_box">
+                <button class="btn btn-warning">查看</button>
+            </div>
+            <img src="img/SeaShore1.jpg" class="img-fluid">
+            <div class="h2 fw-900">旅遊景點01</div>
+            <p class="fw-900">這裡放介紹文字...</p>
+        </div>
+
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="section02 roller-r text-center">
+            <div class="roller_box">
+                <button class="btn btn-warning">查看</button>
+            </div>
+            <img src="img/SeaShore1.jpg" class="img-fluid">
+            <div class="h2 fw-900">旅遊景點01</div>
+            <p class="fw-900">這裡放介紹文字...</p>
+        </div>
+
+    </div> -->
+</div>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/jquery-4.0.0.js"></script>
+<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/TravelFood/",
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                const cleanData = data.map(function (item, index) {
+                    //餐廳圖片
+                    let img = (item.PicURL ?? "").trim();
+                    if (img == "") {
+                        img = "img/Fish.jpg";
+                    }
+                    //餐廳名稱
+                    let name = (item.Name ?? "").trim();
+                    if (name == "") {
+                        name = "未提供名稱"
+                    }
+                    //餐廳地址
+                    let address = (item.address ?? "").trim()
+                        + (item.City ?? "").trim()
+                        + (item.Town ?? "").trim();
+                    if (address == "") {
+                        address = "未提供地址"
+                    }
+                    //餐廳電話
+                    let tel = (item.Tel ?? "").trim();
+                    if (tel == "") {
+                        tel = "未提供電話"
+                    }
+                    //餐廳簡介
+                    let description = (item.HostWords ?? "").trim();
+                    if (description == "") {
+                        description = "未提供簡介"
+                    }
+                    //超連結
+                    let link = (item.Url ?? "").trim();
+                    if (link == "") {
+                        link = "未提供超連結"
+                    }
+
+                    return {
+                        img: img,
+                        name: name,
+                        address: address,
+                        tel: tel,
+                        description: description,
+                        link: link
+                    }
+
+                });
+                //1.清洗資料，保留需要的欄位
+                //2.將清洗後的資料渲染至AI產生的contentBox
+                $("#RestaurantRow").empty();   // 清空舊內容
+
+                cleanData.forEach(function (item) {
+
+                    let card =`
+                        <div class="col-md-6 col-lg-4">
+                            <div class="section02 roller-l text-center">
+
+                                <div class="roller_box">
+                                    <a href="${item.link}" class="btn btn-success">查看餐廳</a>
+                                </div>
+
+                                <img src="${item.img}" class="img-fluid rounded mb-3" alt="餐廳圖片">
+
+                                    <h3 class="fw-bold">${item.name}</h3>
+
+                                    <p class="text-muted mb-1">
+                                        <i class="bi bi-geo-alt-fill"></i> ${item.address}
+                                    </p>
+
+                                    <p class="text-muted mb-3">
+                                        <i class="bi bi-telephone-fill"></i> ${item.tel}
+                                    </p>
+
+                                    <p class="fw-500">${item.description}</p>
+
+                            </div>
+                        </div>
+    `;
+
+                    $("#RestaurantRow").append(card);
+                });
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    })
+</script>
+
+</html>
