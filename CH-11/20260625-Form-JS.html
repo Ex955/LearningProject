@@ -250,7 +250,7 @@
 
                 <div class="d-flex flex-column col-12 gap-2">
                     <button class="btn btn-dark" id="cancel_btn">取消</button>
-                    <button class="btn btn-warning" id="ok_btn">確認送出</button>
+                    <button class="btn btn-warning" id="send_btn">確認送出</button>
                 </div>
             </div>
         </div>
@@ -258,12 +258,11 @@
     <script src="../js/jquery-4.0.0.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
     <script>
-        // let flag_Pname = false;
-        // let flag_Pnum = false;
-        // let flag_Ptype = false;
-        // let flag_Pnote = true;
-        // let flag_Psize = false;
+
+        let productData = {};
+
         $(function () {
             //監聽#Pname
             $("#Pname").on("input", function () {
@@ -451,6 +450,30 @@
             `;
                     });
 
+
+
+                    let supply = $(".supply_item:checked").val();
+
+                    //收集傳遞給後端API的資料
+                    productData = {
+                        Pname: $("#Pname").val(),
+                        Pnum: Number($("#Pnum").val()),
+                        Ptype: $("#Ptype").val(),
+                        Psize: $("#Psize").val(),
+                        Pstatus: Pstatus,
+                        topping: toppingArray.map(x => x.flavor).join("/"),      // ["草莓","巧克力"]
+                        topping_num: toppingArray.map(x => x.qty).join("/"),     // ["30","10"]
+                        supply: supply,
+                        created_at: new Date().toLocaleDateString("zh-TW") + " " +
+                            new Date().toLocaleTimeString("zh-TW", {
+                                hour12: false,
+                                hour: "2-digit",
+                                minute: "2-digit",
+                                second: "2-digit"
+                            })
+                    };
+                    console.log(productData);
+
                     // ③ 組整張確認表格
                     let strHTML = `
             <table class="table table-bordered table-striped">
@@ -513,6 +536,34 @@
                         text: "請檢查並修正錯誤內容",
                     });
                 }
+            });
+
+            $("#send_btn").on("click", function () {
+                //將productData傳遞至後端API
+                axios.post('http://localhost:3000/Product', productData)
+                    .then(function (response) {
+                        console.log(response);
+                        if (response.status == 201) {
+                            Swal.fire({
+                                title: "產品資料新增成功!",
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: "確認",
+                                denyButtonText: `Don't save`
+                            }).then((result) => {
+                                /* Read more about isConfirmed, isDenied below */
+                                if (result.isConfirmed) {
+                                    location.reload();
+                                }
+                            });
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
             });
 
             // 頁面載入時就先檢查一次
