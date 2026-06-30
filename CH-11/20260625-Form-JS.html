@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單練習(JavaScript)</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/my.css">
+    <style>
+        /* === ERP 全域風格強化 === */
+
+        /* === ERP 標題區塊強化 === */
+        .erp-title {
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            color: #fff;
+            padding: 18px 0;
+            border-radius: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            border: 1px solid #1f2a35;
+        }
+
+        /* 全域字體與間距 */
+        body {
+            font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
+            background-color: #f4f6f9;
+        }
+
+        /* 標題強化 */
+        .display-5,
+        .display-4 {
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        /* 表單區塊卡片化 */
+        .col-md-6.mt-3 {
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e3e6ea;
+        }
+
+        /* 表單欄位間距統一 */
+        .mb-3 {
+            margin-bottom: 1.2rem !important;
+        }
+
+        /* 標籤強化 */
+        .form-label {
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* 下拉式選單、輸入框統一高度 */
+        .form-control-lg,
+        .form-select-lg {
+            height: 52px;
+            font-size: 1rem;
+        }
+
+        /* 口味選擇區塊卡片化 */
+        #topping_group {
+            background: #fafafa;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: 1px solid #dcdcdc;
+        }
+
+        /* 口味選項垂直間距 */
+        #topping_group .form-check {
+            margin-bottom: 10px;
+        }
+
+        /* 確認畫面卡片化 */
+        #LCheck .col-md-6 {
+            background: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e3e6ea;
+        }
+
+        /* 按鈕統一風格 */
+        .btn {
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        /* 確認畫面按鈕垂直排列更美觀 */
+        #LCheck .btn {
+            width: 100%;
+        }
+
+        /* 表格風格強化（ERP 版） */
+        table.table {
+            border-radius: 8px;
+            overflow: hidden;
+            /* 修正缺角 */
+            background-color: #f7f8fa;
+            /* 降低亮度 */
+            border: 1px solid #d1d3d6;
+            /* 更沉穩的邊框 */
+        }
+
+        /* 表頭（降低亮度、提升對比） */
+        table.table th {
+            background: #e3e6ea;
+            /* 比 #f0f2f5 更沉穩 */
+            font-weight: 700;
+            color: #333;
+            /* 文字更清晰 */
+            border-bottom: 2px solid #c5c7cb;
+            /* 表頭與內容分界更明確 */
+        }
+
+        /* 邊框（避免缺角、提升一致性） */
+        table.table-bordered {
+            border-color: #273e5a;
+            border-collapse: separate;
+            /* 修正邊框缺角 */
+            border-spacing: 0;
+            /* 修正邊框缺角 */
+        }
+
+        .product-box {
+            border: 3px solid #333;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-box h3 {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <div class="display-5 fw-900 text-center erp-title">產品資料建立</div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 mt-3">
+                <div class="mb-3 form-floating">
+                    <input type="text" class="form-control form-control-lg required" name="" id="Pname" placeholder="">
+                    <label for="Pname" class="form-label">產品名稱(必填，字數1~10)</label>
+                    <div class="valid-feedback">名稱合規</div>
+                    <div class="invalid-feedback">名稱不合規</div>
+                </div>
+                <div class="mb-3">
+                    <label for="Pnum" class="form-label">產品數量</label>
+                    <input type="number" class="form-control form-control-lg required" min="1" max="9999" id="Pnum"
+                        placeholder="必填，範圍1~9999">
+                    <div class="valid-feedback">數量合規</div>
+                    <div class="invalid-feedback">數量不合規</div>
+                </div>
+                <!-- 使用Datalist製作產品簡介與備註 -->
+
+                <div class="mb-3">
+                    <label for="Ptype" class="form-label">產品種類</label>
+                    <input type="text" class="form-control form-control-lg mb-3 required" id="Ptype"
+                        placeholder="產品種類(必填，字數1~10)" list="datalistoption-1">
+                    <div class="valid-feedback">種類無誤</div>
+                    <div class="invalid-feedback">種類輸入有誤</div>
+
+                    <label for="Pnote" class="form-label">產品備註</label>
+                    <input type="text" class="form-control form-control-lg mb-3" id="Pnote" placeholder="備註(字數1~200)"
+                        list="datalistoption-2">
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">字數超出</div>
+
+                    <datalist id="datalistoption-1">
+                        <option value="鮮奶"></option>
+                        <option value="風味奶"></option>
+                        <option value="保久乳"></option>
+                    </datalist>
+
+                    <datalist id="datalistoption-2">
+                        <option value="保存期限-68日"></option>
+                        <option value="保存期限-100日"></option>
+                        <option value="保存期限-120日"></option>
+                    </datalist>
+                </div>
+
+                <div class="mb-3">
+                    <label for="Psize" class="form-label">容量選擇</label>
+                    <select name="" id="Psize" class="form-select form-select-lg required">
+                        <option value="" selected class="text-center fw-900">請選擇容量</option>
+                        <option value="隨手喝">隨手喝(150cc)</option>
+                        <option value="元氣包">元氣包(250cc)</option>
+                        <option value="下午茶">下午茶(650cc)</option>
+                        <option value="獨享滿足">獨享滿足(900cc)</option>
+                        <option value="歡樂家庭號">歡樂家庭號(1500~2200cc)</option>
+                    </select>
+                    <div class="valid-feedback"></div>
+                    <div class="invalid-feedback">請選擇容量</div>
+                </div>
+
+                <div class="mb-3 ">
+                    <div class="form-label" fw-900>口味選擇(未選擇視同選擇原味)</div>
+                    <div id="topping_group" class="is-invalid">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input topping_item" value="原味" name="radio001">
+                            <label for="" class="form-check-label">原味</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input topping_item" value="草莓" name="radio001">
+                            <label for="" class="form-check-label">草莓</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input topping_item" value="芒果" name="radio001">
+                            <label for="" class="form-check-label">芒果</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input topping_item" value="蘋果" name="radio001">
+                            <label for="" class="form-check-label">蘋果</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input topping_item" value="巧克力" name="radio001">
+                            <label for="" class="form-check-label">巧克力</label>
+                        </div>
+                    </div>
+                    <div class="valid-feedback">已選擇口味</div>
+                    <div class="invalid-feedback">所有飲品將以原味錄入商品單</div>
+
+                </div>
+
+                <div class="mb-3 form-check form-switch">
+                    <input type="checkbox" name="" id="Pstatus" class="form-check-input" checked>
+                    <label for="" class="form-check-label" id="Pstatus_text">當前狀態:上架</label>
+                </div>
+
+                <div class="text-end mt-3">
+                    <button class="btn btn-warning" id="cancel_btn">取消</button>
+                    <button class="btn btn-primary" id="ok_btn">確認</button>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row mt-5 justify-content-center d-none" id="LCheck">
+            <div class="display-4 fw-900 text-center text-bg-success py-2 rounded-2">產品單建檔完成 - 確認明細</div>
+            <div class="col-md-6 p-3">
+                <div id="showmessage"></div>
+
+                <div class="d-flex flex-column col-12 gap-2">
+                    <button class="btn btn-dark" id="cancel_btn">取消</button>
+                    <button class="btn btn-warning" id="ok_btn">確認送出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/jquery-4.0.0.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // let flag_Pname = false;
+        // let flag_Pnum = false;
+        // let flag_Ptype = false;
+        // let flag_Pnote = true;
+        // let flag_Psize = false;
+        $(function () {
+            //監聽#Pname
+            $("#Pname").on("input", function () {
+                console.log($(this).val().length);
+                let Pname = $(this).val().trim();
+                let len = Pname.length;
+
+                if (len >= 1 && len <= 6) {
+                    //合規名稱
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+
+
+                } else if (len > 6) {
+                    //非合規名稱
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+
+
+                } else {
+                    //沒有輸入名稱時
+                    $(this).removeClass("is-valid").removeClass("is-invalid");
+
+
+                }
+            });
+            //監聽#Pnum
+            $("#Pnum").on("input", function () {
+                console.log($(this).val());
+                let Pnum = Number($(this).val().trim());
+
+                if (Pnum >= 1 && Pnum <= 9999) {
+                    //合規數量
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+
+
+                } else if (Pnum > 9999) {
+                    //非合規數量
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+
+
+                } else {
+                    //沒有輸入數量時
+                    $(this).removeClass("is-valid").removeClass("is-invalid");
+
+
+                }
+
+            });
+            //監聽#Ptype
+            $("#Ptype").on("input", function () {
+                console.log($(this).val());
+                let Ptype = $(this).val().trim();
+                let len = Ptype.length;
+
+                if (len >= 1 && len <= 6) {
+                    //合法種類
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+
+                } else if (len > 6) {
+                    //非法種類
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+
+                } else {
+                    //沒有輸入種類時
+                    $(this).removeClass("is-valid").removeClass("is-invalid");
+
+                }
+
+            });
+
+            //監聽#Pnote
+            $("#Pnote").on("input", function () {
+                console.log($(this).val());
+                let Pnote = $(this).val().trim();
+                let len = Pnote.length;
+
+                if (len >= 1 && len <= 200) {
+                    //內容處在範圍內
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+
+                } else if (len > 200) {
+                    //內容超出
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+
+                } else {
+                    //沒有輸入時
+                    $(this).removeClass("is-valid").removeClass("is-invalid");
+
+                }
+
+            });
+
+            //監聽#Psize
+            $("#Psize").on("change", function () {
+                console.log($(this).val());
+                let Psize = $(this).val();
+
+                if (Psize != "") {
+                    $(this).removeClass("is-invalid").addClass("is-valid");
+
+                } else {
+                    $(this).removeClass("is-valid").addClass("is-invalid");
+
+                }
+            });
+
+            $("#Pstatus").on("click", function () {
+                console.log($(this).prop("checked"));
+
+                let Pstatus = $(this).prop("checked");
+                if (Pstatus) {
+                    $("#Pstatus_text").text("目前狀態:上架");
+
+                } else {
+                    $("#Pstatus_text").text("目前狀態:下架");
+
+                }
+            });
+
+            $(".topping_item").on("change", function () {
+                console.log($(".topping_item:checked").length);
+
+                let checked = $(this).prop("checked");
+
+                // 找到 checkbox 所在的父層（form-check）
+                let parent = $(this).closest(".form-check");
+
+                if (checked) {
+                    // 若尚未建立輸入框，才建立
+                    if (parent.find(".topping_qty").length === 0) {
+                        parent.append(`
+                <input type="number" class="form-control topping_qty mt-2" 
+                       min="1" placeholder="輸入數量">
+            `);
+                    }
+                } else {
+                    // 取消勾選 → 移除輸入框
+                    parent.find(".topping_qty").remove();
+                }
+
+                let count = $(".topping_item:checked").length;
+
+                if (count > 0) {
+                    $("#topping_group").removeClass("is-invalid").addClass("is-valid");
+
+                } else {
+                    $("#topping_group").removeClass("is-valid").addClass("is-invalid");
+
+                }
+            });
+
+            //監聽#ok_btn
+            $("#ok_btn").on("click", function () {
+                console.log("On Click!!!");
+
+                let validCount = $(".required.is-valid").length;
+                let totalRequired = $(".required").length;
+
+                if (validCount === totalRequired) {
+
+                    $("#LCheck").removeClass("d-none");
+
+                    let Pstatus = $("#Pstatus").prop("checked") ? "上架" : "下架";
+
+                    // ① 收集口味 + 數量
+                    let toppingArray = [];
+                    $(".topping_item:checked").each(function () {
+                        let flavor = $(this).val();
+                        let qty = $(this).closest(".form-check").find(".topping_qty").val() || 0;
+
+                        toppingArray.push({
+                            flavor: flavor,
+                            qty: qty
+                        });
+                    });
+                    console.log(toppingArray);
+
+                    // ② 用 toppingArray 組表格列
+                    let toppingRows = "";
+                    toppingArray.forEach(item => {
+                        toppingRows += `
+                <tr>
+                    <td>${item.flavor}</td>
+                    <td>${item.qty}</td>
+                </tr>
+            `;
+                    });
+
+                    // ③ 組整張確認表格
+                    let strHTML = `
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th colspan="2" class="text-center fs-4">產品明細確認</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="w-25">產品名稱</th>
+                        <td>${$("#Pname").val()}</td>
+                    </tr>
+                    <tr>
+                        <th>產品數量</th>
+                        <td>${$("#Pnum").val()}</td>
+                    </tr>
+                    <tr>
+                        <th>產品種類</th>
+                        <td>${$("#Ptype").val()}</td>
+                    </tr>
+                    <tr>
+                        <th>備註</th>
+                        <td>${$("#Pnote").val()}</td>
+                    </tr>
+                    <tr>
+                        <th>容量</th>
+                        <td>${$("#Psize").val()}</td>
+                    </tr>
+                    <tr>
+                        <th>當前狀態</th>
+                        <td>${Pstatus}</td>
+                    </tr>
+                    <tr>
+                        <th>口味選擇</th>
+                        <td>
+                            <table class="table table-sm table-bordered mb-0">
+                                <thead class="table-secondary">
+                                    <tr>
+                                        <th>口味</th>
+                                        <th>數量</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${toppingRows}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+
+                    $("#showmessage").html(strHTML);
+
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "欄位錯誤?",
+                        text: "請檢查並修正錯誤內容",
+                    });
+                }
+            });
+
+            // 頁面載入時就先檢查一次
+            $("#Psize").trigger("change");
+
+        });
+
+
+    </script>
+</body>
+
+</html>

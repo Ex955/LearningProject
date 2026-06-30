@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表單練習</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/my.css">
+</head>
+
+<body>
+    <div class="container py-5">
+        <div class="display-2 fw-900 my-3">1.基本表單</div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="" class="form-label">產品名稱</label>
+                    <input type="text" class="form-control form-control-lg is-valid" placeholder="請輸入文字，字數介於1~6。">
+                    <div class="valid-feedback">合規名稱</div>
+                    <div class="invalid-feedback">非合規名稱</div>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品數量</label>
+                    <input type="number" class="form-control form-control-sm is-valid" min="1" max="9999" value="10">
+                    <div class="valid-feedback">合規數量</div>
+                    <div class="invalid-feedback">非合規數量</div>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品圖片檔案</label>
+                    <input type="file" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">產品商標檔案(不可選用功能)</label>
+                    <input type="file" class="form-control" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-900 my-3">2.datalist</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <label for="" class="form-label">訂購產品</label>
+                    <input type="text" class="form-control form-control-lg is-valid" placeholder="請輸入文字，字數介於1~6。"
+                        list="datalistoption">
+                    <datalist id="datalistoption">
+                        <option value="經典鮮奶"></option>
+                        <option value="蘋果風味奶"></option>
+                        <option value="草莓風味奶"></option>
+                    </datalist>
+                    <div class="valid-feedback">合規產品名稱</div>
+                    <div class="invalid-feedback">非合規產品名稱</div>
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-900 my-3">3.select</div>
+        <div class="row">
+            <div class="col-12">
+                <select name="" id="" class="form-select  form-select-lg is-invalid">
+                    <option value="" disabled selected class="text-center fw-900">請選擇縣市名稱</option>
+                    <option value="臺北市">臺北市</option>
+                    <option value="新北市">新北市</option>
+                    <option value="臺中市">臺中市</option>
+                    <option value="臺南市">臺南市</option>
+                    <option value="高雄市">高雄市</option>
+                </select>
+                <div class="valid-feedback">已選擇縣市</div>
+                <div class="invalid-feedback">請選擇縣市</div>
+            </div>
+        </div>
+        <div class="display-2 fw-900 my-3">4.switch</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 form-check form-switch">
+                    <input type="checkbox" class="form-check-input is-invalid" name="" id=""></input>
+                    <label for="">同意/不同意</label>
+                    <div class="invalid-feedback">請同意協議</div>
+                </div>
+            </div>
+        </div>
+        <div class="display-2 fw-900 my-3">5.checkbox</div>
+        <div class="row">
+            <div class="col-12 is-invalid">
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="" class="form-check-label">選項01</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="" class="form-check-label">選項02</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="" class="form-check-label">選項03</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label for="" class="form-check-label">選項04</label>
+                </div>
+            </div>
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">此部分為必選，至少選擇一項</div>
+        </div>
+
+        <div class="display-2 fw-900 my-3">6.radio</div>
+        <div class="row">
+            <div class="col-12 is-invalid">
+                <!-- 製作單選型radio表單，需要為所有選項加入name="同一名稱" -->
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="radio001">
+                    <label for="" class="form-check-label">選項01</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="radio001">
+                    <label for="" class="form-check-label">選項02</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="radio001">
+                    <label for="" class="form-check-label">選項03</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="radio001">
+                    <label for="" class="form-check-label">選項04</label>
+                </div>
+            </div>
+            <div class="valid-feedback"></div>
+            <div class="invalid-feedback">此部分為必選</div>
+        </div>
+
+        <div class="display-2 fw-900 my-3">7.input group</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">帳號</span>
+                    <input type="text" class="form-control form-control-lg" placeholder="請輸入帳號">
+                </div>
+                <div class="mb-3 input-group">
+                    <input type="text" class="form-control form-control-lg" placeholder="請輸入Gmail帳號">
+                    <span class="input-group-text">@gmail.com</span>
+                </div>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text">NT$</span>
+                    <input type="text" class="form-control form-control-lg" placeholder="請輸入金額">
+                    <span class="input-group-text">.00</span>
+                </div>
+                <div class="mb-3 input-group">
+                    <input type="text" class="form-control form-control-lg" placeholder="請輸入關鍵字">
+                    <button class="btn btn-primary">搜尋</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="display-2 fw-900 my-3">8.Floatng Label</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3 form-floating">
+                    <!-- input內必須加入placeholder，否則floating無法生效 -->
+                    <input type="text" class="form-control form-control-lg" name="" id="" placeholder="">
+                    <label for="" class="form-label">帳號</label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
